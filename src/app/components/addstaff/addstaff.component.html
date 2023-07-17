@@ -1,0 +1,70 @@
+<app-sidenav>
+    <!-- Custom toolbar and sidenav content for home page -->
+        <div class=" flex justify-center items-center bg-white h-screen">
+            <div class="">
+                <div class="heading text-center">
+                    <h3 class="text-3xl font-medium">AddStaff</h3>
+                  </div>
+                  <div class="body flex justify-center items-center">
+                    <form class="w-72" [formGroup]="AddstaffForm">
+                        <!-- username -->
+                        <div>
+                            <label class="label">
+                              <span class="label-text">Username:</span>
+                            </label>
+                            <input formControlName="username" type="text" placeholder="Enter Username" class="input input-bordered input-sm w-full max-w-xs" [class.error]="AddstaffForm.controls['username'].dirty && AddstaffForm.hasError('required','username')"/>
+                          </div>
+                          <small *ngIf="AddstaffForm.controls['username'].dirty && AddstaffForm.hasError('required','username')" class="text-red-800">*Username is required</small>
+                          <!-- end of username -->
+                        <!-- firstname -->
+                        <div>
+                            <label class="label">
+                              <span class="label-text">FirstName:</span>
+                            </label>
+                            <input formControlName="firstName" type="text" placeholder="Enter firstname" class="input input-bordered input-sm w-full max-w-xs" [class.error]="AddstaffForm.controls['firstName'].dirty && AddstaffForm.hasError('required','firstName')"/>
+                          </div>
+                          <small *ngIf="AddstaffForm.controls['firstName'].dirty && AddstaffForm.hasError('required','firstName')" class="text-red-800">*Firstame is required</small>
+                        <!-- end of firstname -->
+                        <!-- lastname -->
+                        <div>
+                            <label class="label">
+                              <span class="label-text">LastName:</span>
+                            </label>
+                            <input formControlName="lastName" type="text" placeholder="Enter lastname" class="input input-bordered input-sm w-full max-w-xs" [class.error]="AddstaffForm.controls['lastName'].dirty && AddstaffForm.hasError('required','lastName')"/>
+                          </div>
+                          <small *ngIf="AddstaffForm.controls['lastName'].dirty && AddstaffForm.hasError('required','lastName')" class="text-red-800">*Lastname is required</small>
+                        <!-- end of lastname -->
+                        <!-- add email -->
+                        <div>
+                            <label class="label">
+                              <span class="label-text">Email:</span>
+                            </label>
+                            <input formControlName="email" type="text" placeholder="Enter email" class="input input-bordered input-sm w-full max-w-xs" [class.error]="AddstaffForm.controls['email'].dirty && AddstaffForm.hasError('required','email')"/>
+                          </div>
+                          <small *ngIf="AddstaffForm.controls['email'].dirty && AddstaffForm.hasError('required','email')" class="text-red-800">*Email is required</small>
+                        <!-- end of add email  -->
+            
+                        <!-- password -->
+                        <div>
+                            <label class="label">
+                              <span class="label-text">Password:</span>
+                            </label>
+                            <div class="relative">
+                              <input formControlName="password" [type]="type" placeholder="Enter Password" class="input input-bordered input-sm w-full pr-10"  [class.error]="AddstaffForm.controls['password'].dirty && AddstaffForm.hasError('required','password')" />
+                              <span (click)="hideShowPass()" class="fa {{eyeIcon}} absolute top-1/2 right-2 transform -translate-y-1/2 cursor-pointer"></span>
+                            </div>
+                          </div>
+                          <small *ngIf="AddstaffForm.controls['password'].dirty && AddstaffForm.hasError('required', 'username')" class="text-red-800">*Password is required</small>
+                             <!-- uploadimage -->
+                             <div class="mt-3">
+                                <input formControlName="profilePicturePath" type="file" id="fileInput"  name="file" class="file-input file-input-bordered file-input-sm w-full max-w-xs" accept="image/*" [class.error]="AddstaffForm.controls['profilePicturePath'].dirty && AddstaffForm.hasError('required','profilePicturePath')"/>
+                            </div>
+                            <small *ngIf="AddstaffForm.controls['profilePicturePath'].dirty && AddstaffForm.hasError('required','profilePicturePath')" class="text-red-800">*Passport is required</small>
+                        <!-- end of uploadimage -->
+                          <button (click)=" onAddstaff()" class="btn btn-active btn-neutral mt-3 ms-24">AddStaff</button>
+                    
+                    </form>
+                  </div>
+                </div>
+            </div>
+  </app-sidenav>

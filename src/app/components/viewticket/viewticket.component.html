@@ -1,0 +1,117 @@
+<app-sidenav>
+    <!-- Custom toolbar and sidenav content for home page -->
+    <div>
+        <div class="overflow-x-auto  bg-white">
+            <table class="table">
+              <!-- head -->
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>ticketId</th>
+                  <th>subject</th>
+                  <th>description</th>
+                  <th>Date Created</th>
+                  <th>assign Staff</th>
+                </tr>
+              </thead>
+              <tbody *ngFor="let ticket of Tickets; let i= index">
+                <tr>
+                 <td>{{i+1}}</td>
+                  <td>
+                    {{ticket.ticketId}}
+                  </td>
+                  <td>
+                    {{ticket.subject}}
+                  </td>
+                  <td>{{ticket.description}}</td>
+                  <td>{{ticket.createdAt | date}}</td>
+                  <th>
+                    <!-- You can open the modal using ID.showModal() method -->
+                    <button class="btn" (click)="assignStaff(ticket)">assign Staff</button>
+                    <dialog #myModal id="my_modal_3" class="modal">
+                        <form method="dialog" class="modal-box" [formGroup]="ticketForm">
+                            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                            <h3 class="font-bold text-lg">Hello!</h3>
+                            <div class="flex flex-wrap -mx-2">
+                              <div class="w-full sm:w-1/2 px-2">
+                                <div>
+                                  <label class="label">
+                                    <span class="label-text">TicketID:</span>
+                                  </label>
+                                  <input formControlName="ticketId" type="text" placeholder="Enter ticket ID" class="input input-bordered input-sm w-full" readonly/>
+                                </div>
+                              </div>
+                              <div class="w-full sm:w-1/2 px-2">
+                                <div>
+                                  <label class="label">
+                                    <span class="label-text">CustomerName:</span>
+                                  </label>
+                                  <input formControlName="customerName" type="text" placeholder="Enter ticket ID" class="input input-bordered input-sm w-full" readonly/>
+  
+                                </div>
+                              </div>
+                            </div>
+                            <div class="flex flex-wrap -mx-2">
+                              <div class="w-full sm:w-1/2 px-2">
+                                <div>
+                                  <label class="label">
+                                    <span class="label-text">StaffName:</span>
+                                  </label>
+                                  <select  [(ngModel)]="selectedStaff" (ngModelChange)="sendStaffToLocalStorage($event)" formControlName="staffId" class="input input-bordered input-sm w-full" readonly>
+                                        <option *ngFor="let staff of staffs" [value]="staff.id"  >{{ staff.firstName + staff.lastName }}</option>
+                                  </select>
+                                  
+                                  <!-- <select  class="input input-bordered input-sm w-full" readonly>
+                                    <option  #staffSelect *ngFor="let staff of staffs" [value]="staff.id">{{ staff.firstName + staff.lastName }}</option>
+                                  </select>                                   -->
+                                </div>
+                              </div>
+                              <div class="w-full sm:w-1/2 px-2">
+                                <div>
+                                  <label class="label">
+                                    <span class="label-text">Subject:</span>
+                                  </label>
+                                  <input formControlName="subject" type="text" placeholder="Enter subject" class="input input-bordered input-sm w-full" readonly/>
+                                </div>
+                              </div>
+                              <div>
+                                <label class="label">
+                                  <span class="label-text">Description:</span>
+                                </label>
+                                <textarea formControlName="description" placeholder="Description" class="textarea textarea-bordered textarea-lg w-full max-w-xs self-end text-xs" readonly></textarea>
+                              </div>
+                            </div>
+                            <div class="flex flex-wrap -mx-2">
+                              <div class="w-full sm:w-1/2 px-2">
+                                <div>
+                                  <label class="label">
+                                    <span class="label-text">Date:</span>
+                                  </label>
+                                  <input formControlName="createdAt" type="text" placeholder="Enter ticket ID" class="input input-bordered input-sm w-full" readonly/>
+                                </div>
+                              </div>
+                              <div class="w-full sm:w-1/2 px-2">
+                                <div>
+                                  <label class="label">
+                                    <span class="label-text">Status:</span>
+                                  </label>
+                                  <select formControlName="status" class="input input-bordered input-sm w-full" readonly>
+                                        <option *ngFor="let stat of Status">{{stat}}</option>
+                                  </select>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="flex justify-center mt-3">
+                              <button class="btn" (click)="updateTicket()">Assign Staff</button>
+                              </div>
+                          </form>
+                          
+                    </dialog>
+                  </th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+    </div>
+  </app-sidenav>
+

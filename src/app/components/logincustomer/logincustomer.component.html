@@ -1,0 +1,32 @@
+<div class="outer flex justify-center items-center">
+    <div class="bg-white p-11 rounded-md ">
+        <div class="heading text-center">
+          <h3 class="text-3xl font-medium">Login</h3>
+        </div>
+        <div class="body flex justify-center items-center">
+          <form class="w-72" [formGroup]="logincustomerForm">
+            <div>
+              <label class="label">
+                  <span class="label-text">Email</span>
+              </label>
+              <input formControlName="email" type="text" placeholder="Enter Email" class="input input-bordered input-sm w-full max-w-xs"
+                  [class.error]="logincustomerForm.controls['email'].dirty && logincustomerForm.hasError('required','email')" />
+          </div>
+          <small *ngIf="logincustomerForm.controls['email'].dirty && logincustomerForm.hasError('required','email')" class="text-red-800">*Email is required</small>
+            <div>
+              <label class="label">
+                <span class="label-text">Password</span>
+              </label>
+              <div class="relative">
+                <input formControlName="password" [type]="type" placeholder="Enter Password" class="input input-bordered input-sm w-full pr-10"  [class.error]="logincustomerForm.controls['password'].dirty && logincustomerForm.hasError('required','password')" />
+                <span (click)="hideShowPass()" class="fa {{eyeIcon}} absolute top-1/2 right-2 transform -translate-y-1/2 cursor-pointer"></span>
+              </div>
+              <div class="text-center pt-4 text-muted">Dont have account? <a id="forget" routerLink="/signup">Signup</a></div>
+            </div>
+            <small *ngIf="logincustomerForm.controls['password'].dirty && logincustomerForm.hasError('required', 'username')" class="text-red-800">*Password is required</small>
+            <button (click)="onLoginuser()" class="btn btn-active btn-neutral mt-3 ms-24">Login</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    

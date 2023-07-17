@@ -1,0 +1,72 @@
+<mat-toolbar color="primary" class="flex justify-between items-center">
+  <div class="flex items-center">
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon (click)="sideNav.open()" *ngIf="!sideNav?.opened">menu</mat-icon>
+      <mat-icon (click)="sideNav.close()" *ngIf="sideNav?.opened">close</mat-icon>
+    </button>
+    <span class="ml-2">Tickets</span>
+  </div>
+
+  <div class="flex items-center">
+    <!-- <div class="user-info-container flex items-center">
+      <mat-icon class="message-icon">email</mat-icon>
+      <div class="notification-circle"></div>
+    </div> -->
+    <div class="user-info flex items-center">
+      <div class="mask mask-squircle w-12 h-12 me-2">
+        <img src={{image}} alt="Avatar Tailwind CSS Component" />
+      </div>
+      <span class="user-name">{{fullName}}</span>
+      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="User menu"
+      class="flex items-center justify-center ">
+      <mat-icon>keyboard_arrow_down</mat-icon>
+    </button>
+    
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>View Profile</button>
+        <button mat-menu-item (click)="logout()">Log Out</button>
+      </mat-menu>
+    </div>
+  </div>
+</mat-toolbar>
+
+  
+  
+
+
+<mat-sidenav-container>
+    <mat-sidenav #sidenav="matSidenav" class="p-2">
+        <button mat-button class="menu-button">
+            <mat-icon>dashboard</mat-icon>
+            <span routerLink="/dashboard">DashBoard</span>
+        </button>
+        <ng-container *ngIf="role === 'admin'">
+        <mat-divider></mat-divider>
+        <button mat-button class="menu-button">
+            <mat-icon>add</mat-icon>
+            <span routerLink="/addstaff">Add Staff</span>
+        </button>
+       
+        <mat-divider></mat-divider>
+        <button mat-button class="menu-button">
+          <mat-icon><i class="fa fa-users" aria-hidden="true"></i></mat-icon>
+          <span routerLink="/viewstaff">View Staff</span>
+      </button>
+     
+      <mat-divider></mat-divider>
+          <button mat-button class="menu-button">
+            <mat-icon><i class="fa fa-ticket mb-4" aria-hidden="true"></i></mat-icon>
+            <span routerLink="/viewticket">View Tickets</span>
+        </button>
+        </ng-container>
+        <mat-divider></mat-divider>
+        <button mat-button class="menu-button">
+            <mat-icon>add</mat-icon>
+            <span routerLink="/updatestatus">Update Tickets Status</span>
+        </button>
+        <mat-divider></mat-divider>
+    </mat-sidenav>
+    <mat-sidenav-content class="content mat-elevation-z4">
+        <ng-content> </ng-content>
+    </mat-sidenav-content>
+</mat-sidenav-container>

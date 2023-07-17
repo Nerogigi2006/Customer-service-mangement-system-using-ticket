@@ -1,0 +1,48 @@
+<div class="outer flex justify-center items-center">
+    <div class="bg-white p-11 rounded-md">
+        <div class="heading text-center">
+            <h3 class="text-3xl font-medium">Signup</h3>
+        </div>
+        <div class="body flex justify-center items-center">
+            <form class="w-72" [formGroup]="signUpForm">
+                <div>
+                    <label class="label">
+                        <span class="label-text">First Name</span>
+                    </label>
+                    <input formControlName="firstName" type="text" placeholder="Enter First Name" class="input input-bordered input-sm w-full max-w-xs"
+                        [class.error]="signUpForm.controls['firstName'].dirty && signUpForm.hasError('required','firstName')" />
+                </div>
+                <small *ngIf="signUpForm.controls['firstName'].dirty && signUpForm.hasError('required','firstName')" class="text-red-800">*First Name is required</small>
+                <div>
+                    <label class="label">
+                        <span class="label-text">Last Name</span>
+                    </label>
+                    <input formControlName="lastName" type="text" placeholder="Enter Last Name" class="input input-bordered input-sm w-full max-w-xs"
+                        [class.error]="signUpForm.controls['lastName'].dirty && signUpForm.hasError('required','lastName')" />
+                </div>
+                <small *ngIf="signUpForm.controls['lastName'].dirty && signUpForm.hasError('required','lastName')" class="text-red-800">*Last Name is required</small>
+                <div>
+                    <label class="label">
+                        <span class="label-text">Email</span>
+                    </label>
+                    <input formControlName="email" type="text" placeholder="Enter Email" class="input input-bordered input-sm w-full max-w-xs"
+                        [class.error]="signUpForm.controls['email'].dirty && signUpForm.hasError('required','email')" />
+                </div>
+                <small *ngIf="signUpForm.controls['email'].dirty && signUpForm.hasError('required','email')" class="text-red-800">*Email is required</small>
+                <div>
+                    <label class="label">
+                        <span class="label-text">Password</span>
+                    </label>
+                    <div class="relative">
+                        <input formControlName="password" [type]="type" placeholder="Enter Password" class="input input-bordered input-sm w-full pr-10"
+                            [class.error]="signUpForm.controls['password'].dirty && signUpForm.hasError('required','password')" />
+                        <span (click)="hideShowPass()" class="fa {{eyeIcon}} absolute top-1/2 right-2 transform -translate-y-1/2 cursor-pointer"></span>
+                    </div>
+                </div>
+                <small *ngIf="signUpForm.controls['password'].dirty && signUpForm.hasError('required','password')" class="text-red-800">*Password is required</small>
+                <button (click)="onSignup()" class="btn btn-active btn-neutral mt-3 ms-24">Signup</button>
+                <div class="text-center pt-4 text-muted">Already have an account? <a id="forget" routerLink="/logincustomer">Login</a></div>
+            </form>
+        </div>
+    </div>
+</div>

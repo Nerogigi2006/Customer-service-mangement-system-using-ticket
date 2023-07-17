@@ -1,0 +1,30 @@
+<div class="outer flex justify-center items-center">
+  <div class="bg-white p-11 rounded-md ">
+      <div class="heading text-center">
+        <h3 class="text-3xl font-medium">Login</h3>
+      </div>
+      <div class="body flex justify-center items-center">
+        <form class="w-72" [formGroup]="loginForm">
+            <div >
+            <label class="label">
+              <span class="label-text">Username</span>
+            </label>
+            <input formControlName="username" type="text" placeholder="Enter Username" class="input input-bordered input-sm w-full max-w-xs" [class.error]="loginForm.controls['username'].dirty && loginForm.hasError('required','username')"/>
+          </div>
+          <small *ngIf="loginForm.controls['username'].dirty && loginForm.hasError('required','username')" class="text-red-800">*Username is required</small>
+          <div>
+            <label class="label">
+              <span class="label-text">Password</span>
+            </label>
+            <div class="relative">
+              <input formControlName="password" [type]="type" placeholder="Enter Password" class="input input-bordered input-sm w-full pr-10"  [class.error]="loginForm.controls['password'].dirty && loginForm.hasError('required','password')" />
+              <span (click)="hideShowPass()" class="fa {{eyeIcon}} absolute top-1/2 right-2 transform -translate-y-1/2 cursor-pointer"></span>
+            </div>
+          </div>
+          <small *ngIf="loginForm.controls['password'].dirty && loginForm.hasError('required', 'username')" class="text-red-800">*Password is required</small>
+          <button (click)="onLogin()" class="btn btn-active btn-neutral mt-3 ms-24">Login</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  
